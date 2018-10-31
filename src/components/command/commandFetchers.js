@@ -1,8 +1,9 @@
 import Command from "./Command";
+import {apiBaseUrl} from "../../config";
 
 export async function fetchCommands() {
-  const res = await fetch(`http://api.tvmaze.com/search/shows?q=suits`);
-  await res.json();
+  const res = await fetch(`${apiBaseUrl}/command`);
+  const commandsJson = await res.json();
 
-  return [new Command({name: 'Start motors', endpoint: '/api/command/start/execute'})]
+  return commandsJson.map( cj => new Command(cj))
 }

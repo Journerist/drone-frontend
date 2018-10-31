@@ -1,19 +1,24 @@
 export default class Command {
 
-  constructor({name, endpoint}) {
-    if(!name || !endpoint) {
-      throw new Error('name and endpoint need to be defined.');
+  constructor({id, name, description}) {
+    if(!id || !name || !description) {
+      throw new Error('id, name, description need to be defined.');
     }
 
+    this._id = id
     this._name = name;
-    this._endpoint = endpoint;
+    this._description = description;
+  }
+
+  getId() {
+    return this._id;
   }
 
   getName() {
     return this._name;
   }
 
-  getEndpoint() {
-    return this._endpoint;
+  getDescription() {
+    return this._description;
   }
 }
